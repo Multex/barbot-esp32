@@ -1,0 +1,73 @@
+{
+  "CubaLibre": [
+    { "disp": 4, "oz": 1 },
+    { "disp": 1, "oz": 2 }
+  ],
+  "RonConNaranja": [
+    { "disp": 4, "oz": 1 },
+    { "disp": 5, "oz": 2 }
+  ],
+  "RonTonic": [
+    { "disp": 4, "oz": 1 },
+    { "disp": 3, "oz": 2 }
+  ],
+  "Screwdriver": [
+    { "disp": 2, "oz": 1 },
+    { "disp": 5, "oz": 2 }
+  ],
+  "VodkaTonic": [
+    { "disp": 2, "oz": 1 },
+    { "disp": 3, "oz": 2 }
+  ],
+  "VodkaCola": [
+    { "disp": 2, "oz": 1 },
+    { "disp": 1, "oz": 2 }
+  ],
+  "RonVodkaCola": [
+    { "disp": 4, "oz": 1 },
+    { "disp": 2, "oz": 1 },
+    { "disp": 1, "oz": 2 }
+  ],
+  "RonVodkaNaranja": [
+    { "disp": 4, "oz": 1 },
+    { "disp": 2, "oz": 1 },
+    { "disp": 5, "oz": 2 }
+  ],
+  "RonVodkaTonic": [
+    { "disp": 4, "oz": 1 },
+    { "disp": 2, "oz": 1 },
+    { "disp": 3, "oz": 2 }
+  ],
+  "ShotVodka": [
+    { "disp": 2, "oz": 1 }
+  ],
+  "ShotRon": [
+    { "disp": 4, "oz": 1 }
+  ],
+  "Shot5050": [
+    { "disp": 2, "oz": 1 },
+    { "disp": 4, "oz": 1 }
+  ],
+  "ShotCitrico": [
+    { "disp": 2, "oz": 1 },
+    { "disp": 5, "oz": 1 }
+  ],
+  "NaranjaTonic": [
+    { "disp": 5, "oz": 1 },
+    { "disp": 3, "oz": 1 }
+  ],
+  "CitricoCola": [
+    { "disp": 5, "oz": 1 },
+    { "disp": 1, "oz": 1 }
+  ],
+  "VodkaSunriseFake": [
+    { "disp": 2, "oz": 1 },
+    { "disp": 5, "oz": 1 },
+    { "disp": 1, "oz": 1 }
+  ],
+  "RonFresh": [
+    { "disp": 4, "oz": 1 },
+    { "disp": 5, "oz": 1 },
+    { "disp": 3, "oz": 1 }
+  ]
+}
