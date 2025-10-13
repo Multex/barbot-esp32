@@ -1,0 +1,32 @@
+name: Bug report
+description: Reporta un problema con el firmware o docs
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Qué pasó
+      description: Describe el problema y lo que esperabas que ocurriera
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/Salida de serie
+      description: Pega la salida relevante de la consola
+      render: shell
+  - type: input
+    id: board
+    attributes:
+      label: Placa/Entorno
+      placeholder: esp32doit-devkit-v1, versión PlatformIO
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      description: Lista de pasos para reproducir el bug
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+
