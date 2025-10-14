@@ -62,6 +62,19 @@ Notas sobre motores en paralelo (dispensador):
 - La corriente por fase se suma (~0.8 A/fase si cada motor es 0.4 A); el L298N suele soportar 2 A pico por canal con buen disipador. Vigila temperatura.
 - Si giran al revés, invierte el orden de fases en uno de los motores.
 
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><b>Esquema eléctrico</b></td>
+      <td align="center"><b>Esquema electrónico</b></td>
+    </tr>
+    <tr>
+      <td><img src="images/electric-squematic.jpeg" alt="Esquemático eléctrico" width="420"/></td>
+      <td><img src="images/eletronic-squematic.png" alt="Esquema electrónico" width="420"/></td>
+    </tr>
+  </table>
+</div>
+
 ## Recetas (recipes.json)
 
 Ejemplo:
@@ -119,28 +132,13 @@ Notas:
 
 ## Imágenes
 
-Coloca tus fotos y diagramas en `images/` y enlázalos aquí.
+Fotos actuales del proyecto (ver carpeta `images/`):
 
-Ejemplos de nombres sugeridos:
+![Proyecto final](images/final-barbot.jpeg)
 
-- `images/final-assembled.jpg` — foto del proyecto terminado
-- `images/schematic.png` — esquemático electrónico
-- `images/wiring.jpg` — cableado real
-- `images/web-ui.png` — captura de la interfaz web
-
-Ejemplo de uso en Markdown:
-
-```md
-![Proyecto final](images/final-assembled.jpg)
-![Esquemático](images/schematic.png)
-```
+![Módulo de control (ESP32 + drivers)](images/control-barbot.jpeg)
 
 Sugerencias: exporta a 1600–2400 px de ancho y comprime (JPG/PNG) para mantener el repo liviano.
-
-Imágenes actuales:
-
-![Esquemático eléctrico](images/electric-squematic.jpeg)
-![Esquemático electrónico](images/eletronic-squematic.png)
 
 ## Licencia
 
