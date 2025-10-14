@@ -7,7 +7,7 @@ Barbot es un dispensador de bebidas automatizado basado en ESP32. Mueve una base
 - Configuración WiFi con portal cautivo vía WiFiManager (botón de reset durante el arranque).
 - Servidor web con UI en español y mDNS en `http://barbot.local`.
 - Máquina de estados que gestiona homing, movimiento entre dispensadores y servido.
-- Recetas en `recipes.json` (formato simple con `disp` y `oz`).
+- Recetas en `sd/recipes.json` (copia este archivo a la SD como `/recipes.json`).
 - Control de motores paso a paso (Arduino `Stepper`) para base y dispensador.
 - Consola serie para ejecutar recetas manualmente cuando el sistema está en reposo.
 
@@ -19,7 +19,7 @@ Barbot es un dispensador de bebidas automatizado basado en ESP32. Mueve una base
 
 - Placa `esp32doit-devkit-v1`
 - PlatformIO (VSCode o CLI)
-- Tarjeta SD con `recipes.json`
+- Tarjeta SD con `/recipes.json` (usa el ejemplo en `sd/recipes.json`)
 - Fuente 12V 4A (sugerida)
 
 ## Comandos
@@ -36,7 +36,7 @@ Barbot es un dispensador de bebidas automatizado basado en ESP32. Mueve una base
 - `src/motor_control.cpp`: homing, movimientos y servido.
 - `src/recipe_handler.cpp`: lógica de ejecución de recetas.
 - `include/*.h`: pines/config, estados y recursos web.
-- `recipes.json`: catálogo de recetas que muestra la UI.
+- `sd/recipes.json`: ejemplo de recetas para copiar a la SD (raíz como `/recipes.json`).
 
 ## Hardware y cableado
 
@@ -75,7 +75,7 @@ Notas sobre motores en paralelo (dispensador):
   </table>
 </div>
 
-## Recetas (recipes.json)
+## Recetas (sd/recipes.json → SD:/recipes.json)
 
 Ejemplo:
 
@@ -107,7 +107,7 @@ Notas:
 ## Flujo de operación
 
 1. Homing de la base al encender (endstop).
-2. Carga de recetas desde SD (`/recipes.json`).
+2. Carga de recetas desde SD (`/recipes.json`). Usa el ejemplo del repo en `sd/recipes.json`.
 3. Conexión WiFi (o portal cautivo si se mantiene presionado el botón BOOT al inicio).
 4. UI web: mDNS `http://barbot.local` funciona mejor en iOS. En Android/Windows, usa la IP mostrada por serie.
 5. Estado final: vuelve al dispensador 1 y deshabilita motores.
@@ -126,7 +126,7 @@ Notas:
 ## Seguridad y notas
 
 - No hardcodees credenciales: el portal de WiFiManager gestiona la configuración.
-- Valida ingredientes y volúmenes en `recipes.json` antes de uso.
+- Valida ingredientes y volúmenes en `SD:/recipes.json` antes de uso.
 - 12V pueden dañar la lógica si conectas mal; comparte GND y separa retornos de motor.
 - Ten cuidado con líquidos y electricidad: protege controladores y asegura ventilación.
 
@@ -145,3 +145,7 @@ MIT — ver `LICENSE` para los términos completos.
 ## Créditos
 
 - Basado en ESP32 + Arduino, con `ArduinoJson`, `Stepper` y `WiFiManager`.
+## Contenido de la SD
+
+- Copia `sd/recipes.json` al directorio raíz de la tarjeta SD con el nombre exacto `/recipes.json`.
+- Mantén el formato JSON simple: cada receta es un arreglo de pasos `{ "disp": <1..TOTAL_DISPENSADORES>, "oz": <entero> }`.
