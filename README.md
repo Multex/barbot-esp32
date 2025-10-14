@@ -138,8 +138,6 @@ Fotos actuales del proyecto (ver carpeta `images/`):
 
 ![Módulo de control (ESP32 + drivers)](images/control-barbot.jpeg)
 
-Sugerencias: exporta a 1600–2400 px de ancho y comprime (JPG/PNG) para mantener el repo liviano.
-
 ## Licencia
 
 MIT — ver `LICENSE` para los términos completos.
