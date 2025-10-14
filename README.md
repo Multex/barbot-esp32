@@ -20,6 +20,7 @@ Barbot es un dispensador de bebidas automatizado basado en ESP32. Mueve una base
 - Placa `esp32doit-devkit-v1`
 - PlatformIO (VSCode o CLI)
 - Tarjeta SD con `recipes.json`
+- Fuente 12V 4A (sugerida)
 
 ## Comandos
 
@@ -36,15 +37,22 @@ Barbot es un dispensador de bebidas automatizado basado en ESP32. Mueve una base
 - `src/recipe_handler.cpp`: lógica de ejecución de recetas.
 - `include/*.h`: pines/config, estados y recursos web.
 - `recipes.json`: catálogo de recetas que muestra la UI.
-- `test/`: suites de pruebas (Unity/PlatformIO).
 
-## Mapeo de pines (config.h)
+## Hardware y cableado
 
-- SD: `SD_CS_PIN 5`
-- Endstop: `ENDSTOP_PIN 13`
-- Botón reset WiFi: `RESET_BUTTON_PIN 0`
-- Base (L298N #1): `25, 26, 27, 14` y `BASE_ENABLE_PIN 32`
-- Dispensador (L298N #2): `2, 4, 16, 17` y `SERVE_ENABLE_PIN 33`
+- 2× NEMA 17 0.4A (base y dispensador)
+- 2× L298N (uno por motor)
+- 1× Endstop NC/NO
+- 1× Lector SD (SPI)
+- 12V 4A (motores) y 5V de la placa (lógica) — comparte GND
+
+Mapeo de pines (ver `include/config.h`):
+
+- SD CS: `SD_CS_PIN 5` (SPI por defecto para SCK/MOSI/MISO)
+- Endstop: `ENDSTOP_PIN 13` (INPUT_PULLUP, activo en LOW)
+- Botón reset WiFi: `RESET_BUTTON_PIN 0` (IO0/BOOT)
+- L298N Base (Driver #1): `BASE_PIN_1 25`, `BASE_PIN_2 26`, `BASE_PIN_3 27`, `BASE_PIN_4 14`, `BASE_ENABLE_PIN 32`
+- L298N Dispensador (Driver #2): `SERVE_PIN_1 2`, `SERVE_PIN_2 4`, `SERVE_PIN_3 16`, `SERVE_PIN_4 17`, `SERVE_ENABLE_PIN 33`
 
 Parámetros: `STEPS_PER_REVOLUTION 200`, `TOTAL_VUELTAS 45`, `TOTAL_DISPENSADORES 5`.
 
@@ -64,28 +72,44 @@ Ejemplo:
 - `disp`: índice de dispensador (1..TOTAL_DISPENSADORES)
 - `oz`: onzas a servir por paso.
 
-Consulta `docs/RECIPES.md` para detalles y recomendaciones.
+Dispensadores (1..5) sugeridos:
+
+1. Cola
+2. Vodka
+3. Tónica
+4. Ron
+5. Naranja
+
+Notas:
+
+- `disp` debe estar en `1..TOTAL_DISPENSADORES`.
+- En este proyecto, 1 “oz” en firmware equivale a ~1.5 oz reales (dispensadores de botella). Ajusta cantidades o calibra según tu hardware.
 
 ## Flujo de operación
 
 1. Homing de la base al encender (endstop).
 2. Carga de recetas desde SD (`/recipes.json`).
 3. Conexión WiFi (o portal cautivo si se mantiene presionado el botón BOOT al inicio).
-4. UI web en `http://barbot.local` para iniciar recetas.
+4. UI web: mDNS `http://barbot.local` funciona mejor en iOS. En Android/Windows, usa la IP mostrada por serie.
 5. Estado final: vuelve al dispensador 1 y deshabilita motores.
 
-## Desarrollo
+## Calibración rápida
 
-- Estilo: indentación de 2 espacios, llaves en misma línea, cadenas de UI en español.
-- Evitar asignación dinámica en rutas críticas; reutiliza buffers si es posible.
-- Ejecuta `platformio test` antes de subir cambios importantes.
-- Ver `CONTRIBUTING.md` para commits y PRs.
+- Homing: el eje base se mueve en negativo hasta accionar el endstop (LOW) y fija el dispensador 1.
+- Pasos por dispensador: el firmware calcula la separación en pasos con `TOTAL_VUELTAS` y `TOTAL_DISPENSADORES`. Ajusta `TOTAL_VUELTAS` para alinear todas las posiciones.
+- Volumen: `serveOz(n)` realiza ciclos de avance/retroceso. Si 1 “oz” entrega ~1.5 oz, ajusta tus recetas o la lógica/retardos según tu bomba.
+
+## Consejos de desarrollo
+
+- Estilo: 2 espacios, llaves en misma línea; cadenas de UI en español.
+- Evita asignación dinámica en rutas críticas; reutiliza buffers si es posible.
 
 ## Seguridad y notas
 
 - No hardcodees credenciales: el portal de WiFiManager gestiona la configuración.
 - Valida ingredientes y volúmenes en `recipes.json` antes de uso.
-- Ten cuidado con líquidos y electricidad: protege controladores y asegúrate de ventilación.
+- 12V pueden dañar la lógica si conectas mal; comparte GND y separa retornos de motor.
+- Ten cuidado con líquidos y electricidad: protege controladores y asegura ventilación.
 
 ## Imágenes
 
