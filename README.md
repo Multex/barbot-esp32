@@ -40,8 +40,8 @@ Barbot es un dispensador de bebidas automatizado basado en ESP32. Mueve una base
 
 ## Hardware y cableado
 
-- 2× NEMA 17 0.4A (base y dispensador)
-- 2× L298N (uno por motor)
+- 3× NEMA 17 0.4A (1 para la base, 2 en paralelo para el dispensador)
+- 2× L298N (1 para la base, 1 para los 2 motores del dispensador en paralelo)
 - 1× Endstop NC/NO
 - 1× Lector SD (SPI)
 - 12V 4A (motores) y 5V de la placa (lógica) — comparte GND
@@ -55,6 +55,12 @@ Mapeo de pines (ver `include/config.h`):
 - L298N Dispensador (Driver #2): `SERVE_PIN_1 2`, `SERVE_PIN_2 4`, `SERVE_PIN_3 16`, `SERVE_PIN_4 17`, `SERVE_ENABLE_PIN 33`
 
 Parámetros: `STEPS_PER_REVOLUTION 200`, `TOTAL_VUELTAS 45`, `TOTAL_DISPENSADORES 5`.
+
+Notas sobre motores en paralelo (dispensador):
+
+- Cablea ambos NEMA con las mismas fases en paralelo para que giren igual.
+- La corriente por fase se suma (~0.8 A/fase si cada motor es 0.4 A); el L298N suele soportar 2 A pico por canal con buen disipador. Vigila temperatura.
+- Si giran al revés, invierte el orden de fases en uno de los motores.
 
 ## Recetas (recipes.json)
 
@@ -130,6 +136,11 @@ Ejemplo de uso en Markdown:
 ```
 
 Sugerencias: exporta a 1600–2400 px de ancho y comprime (JPG/PNG) para mantener el repo liviano.
+
+Imágenes actuales:
+
+![Esquemático eléctrico](images/electric-squematic.jpeg)
+![Esquemático electrónico](images/eletronic-squematic.png)
 
 ## Licencia
 
