@@ -138,6 +138,15 @@ Fotos actuales del proyecto (ver carpeta `images/`):
 
 ![Módulo de control (ESP32 + drivers)](images/control-barbot.jpeg)
 
+### Video de demostración
+
+<div align="center">
+  <video src="images/video-test.mp4" width="640" controls loop muted playsinline>
+    Tu navegador no soporta video embebido. 
+    <a href="images/video-test.mp4">Descargar/abrir video</a>.
+  </video>
+</div>
+
 ## Licencia
 
 MIT — ver `LICENSE` para los términos completos.
