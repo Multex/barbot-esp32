@@ -140,12 +140,15 @@ Fotos actuales del proyecto (ver carpeta `images/`):
 
 ### Video de demostración
 
-<div align="center">
-  <video src="images/video-test.mp4" width="640" controls loop muted playsinline>
-    Tu navegador no soporta video embebido. 
-    <a href="images/video-test.mp4">Descargar/abrir video</a>.
-  </video>
-</div>
+GitHub no permite reproducir video embebido en el README. Haz clic en la imagen o el enlace para abrir el MP4.
+
+<p align="center">
+  <a href="images/video-test.mp4">
+    <img src="images/final-barbot.jpeg" alt="Video de demostración" width="640" />
+  </a>
+</p>
+
+- Ver video (MP4): `images/video-test.mp4`
 
 ## Licencia
 
