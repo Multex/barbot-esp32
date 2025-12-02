@@ -1,16 +1,16 @@
 #include <Arduino.h>
-#include <WiFi.h>
-#include <WebServer.h>
+#include <ESPmDNS.h>
 #include <FS.h>
 #include <SD.h>
+#include <WebServer.h>
+#include <WiFi.h>
 #include <WiFiManager.h>
-#include <ESPmDNS.h>
 
 #include "config.h"
-#include "state.h"
-#include "web_page.h"
 #include "motor_control.h"
 #include "recipe_handler.h"
+#include "state.h"
+#include "web_page.h"
 
 // Variables compartidas que controlan el estado del sistema
 BarbotState currentState = IDLE;
@@ -29,18 +29,29 @@ String readFileToString(fs::FS &fs, const char *path) {
     return "";
   }
   String s;
-  while (file.available()) s += char(file.read());
+  while (file.available())
+    s += char(file.read());
   file.close();
   return s;
 }
 
-void handleRoot() {
-  server.send_P(200, "text/html", PAGE_MAIN);
+bool recipeExists(String id) {
+  JsonArray recipes = doc["recipes"].as<JsonArray>();
+  for (JsonObject r : recipes) {
+    if (r["id"].as<String>() == id)
+      return true;
+  }
+  return false;
 }
+
+void handleRoot() { server.send_P(200, "text/html", PAGE_MAIN); }
 
 void handleStatus() {
   JsonDocument statusDoc;
-  const char* stateNames[] = {"IDLE", "HOMING", "RECIPE_START", "RECIPE_MOVE", "RECIPE_SERVE", "RECIPE_WAIT_FINISH", "RECIPE_RETURN", "RECIPE_DONE"};
+  const char *stateNames[] = {"IDLE",          "HOMING",
+                              "RECIPE_START",  "RECIPE_MOVE",
+                              "RECIPE_SERVE",  "RECIPE_WAIT_FINISH",
+                              "RECIPE_RETURN", "RECIPE_DONE"};
   statusDoc["state"] = stateNames[currentState];
   statusDoc["message"] = statusMessage;
   statusDoc["dispenser"] = currentDispenser;
@@ -61,7 +72,10 @@ void handlePrepare() {
     return;
   }
   String recipeName = server.arg("recipe");
-  if (recipeName.isEmpty() || doc[recipeName].isNull()) {
+  Serial.printf(">> Peticion recibida: '%s'\n", recipeName.c_str());
+
+  if (recipeName.isEmpty() || !recipeExists(recipeName)) {
+    Serial.printf("❌ Error: '%s' no encontrada o vacia\n", recipeName.c_str());
     server.send(404, "text/plain", "Receta no encontrada");
     return;
   }
@@ -72,11 +86,11 @@ void handlePrepare() {
 void setup() {
   Serial.begin(115200);
   Serial.println("\n=== Barbot Inicializando ===");
-  
+
   pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
-  
+
   WiFiManager wm;
-  
+
   if (digitalRead(RESET_BUTTON_PIN) == LOW) {
     Serial.println("Botón presionado. Reseteando configuración WiFi...");
     wm.resetSettings();
@@ -88,15 +102,17 @@ void setup() {
   setupMotors();
   if (!SD.begin(SD_CS_PIN)) {
     Serial.println("SD mount failed!");
-    while (1);
+    while (1)
+      ;
   }
-  
+
   String json = readFileToString(SD, "/recipes.json");
   if (deserializeJson(doc, json)) {
     Serial.println("JSON parse failed!");
-    while (1);
+    while (1)
+      ;
   }
-  
+
   homeBase();
   disableAllMotors();
 
@@ -108,7 +124,7 @@ void setup() {
     delay(5000);
     ESP.restart();
   }
-  
+
   Serial.println("\nWiFi conectado! IP: " + WiFi.localIP().toString());
 
   if (!MDNS.begin("barbot")) {
@@ -123,7 +139,7 @@ void setup() {
   server.on("/recipes", handleRecipes);
   server.on("/prepare", HTTP_POST, handlePrepare);
   server.begin();
-  
+
   Serial.println("=== BARBOT LISTO ===");
 }
 
@@ -131,12 +147,17 @@ void setup() {
 void loop() {
   server.handleClient();
   updateRecipe();
-  
+
   if (Serial.available() && currentState == IDLE) {
     String line = Serial.readStringUntil('\n');
     line.trim();
-    if (!line.isEmpty() && !doc[line].isNull()) {
+    if (!line.isEmpty() && recipeExists(line)) {
       startRecipe(line);
     }
   }
+}
+
+void yieldAndHandle() {
+  server.handleClient();
+  delay(1);
 }

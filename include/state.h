@@ -6,7 +6,7 @@
 enum BarbotState {
   IDLE,
   HOMING,
-  
+
   RECIPE_START,
   RECIPE_MOVE,
   RECIPE_SERVE,
@@ -22,3 +22,6 @@ extern String statusMessage;
 extern int currentDispenser;
 extern long currentSteps;
 extern JsonDocument doc;
+
+// Función para ceder control al servidor web durante tareas largas
+void yieldAndHandle();

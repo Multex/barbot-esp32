@@ -1,74 +1,186 @@
 {
-  "CubaLibre": [
-    { "disp": 4, "oz": 1 },
-    { "disp": 1, "oz": 2 }
-  ],
-  "RonConNaranja": [
-    { "disp": 4, "oz": 1 },
-    { "disp": 5, "oz": 2 }
-  ],
-  "RonTonic": [
-    { "disp": 4, "oz": 1 },
-    { "disp": 3, "oz": 2 }
-  ],
-  "Screwdriver": [
-    { "disp": 2, "oz": 1 },
-    { "disp": 5, "oz": 2 }
-  ],
-  "VodkaTonic": [
-    { "disp": 2, "oz": 1 },
-    { "disp": 3, "oz": 2 }
-  ],
-  "VodkaCola": [
-    { "disp": 2, "oz": 1 },
-    { "disp": 1, "oz": 2 }
-  ],
-  "RonVodkaCola": [
-    { "disp": 4, "oz": 1 },
-    { "disp": 2, "oz": 1 },
-    { "disp": 1, "oz": 2 }
-  ],
-  "RonVodkaNaranja": [
-    { "disp": 4, "oz": 1 },
-    { "disp": 2, "oz": 1 },
-    { "disp": 5, "oz": 2 }
-  ],
-  "RonVodkaTonic": [
-    { "disp": 4, "oz": 1 },
-    { "disp": 2, "oz": 1 },
-    { "disp": 3, "oz": 2 }
-  ],
-  "ShotVodka": [
-    { "disp": 2, "oz": 1 }
-  ],
-  "ShotRon": [
-    { "disp": 4, "oz": 1 }
-  ],
-  "Shot5050": [
-    { "disp": 2, "oz": 1 },
-    { "disp": 4, "oz": 1 }
-  ],
-  "ShotCitrico": [
-    { "disp": 2, "oz": 1 },
-    { "disp": 5, "oz": 1 }
-  ],
-  "NaranjaTonic": [
-    { "disp": 5, "oz": 1 },
-    { "disp": 3, "oz": 1 }
-  ],
-  "CitricoCola": [
-    { "disp": 5, "oz": 1 },
-    { "disp": 1, "oz": 1 }
-  ],
-  "VodkaSunriseFake": [
-    { "disp": 2, "oz": 1 },
-    { "disp": 5, "oz": 1 },
-    { "disp": 1, "oz": 1 }
-  ],
-  "RonFresh": [
-    { "disp": 4, "oz": 1 },
-    { "disp": 5, "oz": 1 },
-    { "disp": 3, "oz": 1 }
+  "recipes": [
+    {
+      "id": "CubaLibre",
+      "name": "Cuba Libre",
+      "ingredients": "Ron, Coca-Cola",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 },
+        { "disp": 1, "oz": 2 }
+      ]
+    },
+    {
+      "id": "RonConNaranja",
+      "name": "Ron con Naranja",
+      "ingredients": "Ron, Jugo de naranja",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 },
+        { "disp": 5, "oz": 2 }
+      ]
+    },
+    {
+      "id": "RonTonic",
+      "name": "Ron Tonic",
+      "ingredients": "Ron, Agua tónica",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 },
+        { "disp": 3, "oz": 2 }
+      ]
+    },
+    {
+      "id": "Screwdriver",
+      "name": "Screwdriver",
+      "ingredients": "Vodka, Jugo de naranja",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 2, "oz": 1 },
+        { "disp": 5, "oz": 2 }
+      ]
+    },
+    {
+      "id": "VodkaTonic",
+      "name": "Vodka Tonic",
+      "ingredients": "Vodka, Agua tónica",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 2, "oz": 1 },
+        { "disp": 3, "oz": 2 }
+      ]
+    },
+    {
+      "id": "VodkaCola",
+      "name": "Vodka con Coca-Cola",
+      "ingredients": "Vodka, Coca-Cola",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 2, "oz": 1 },
+        { "disp": 1, "oz": 2 }
+      ]
+    },
+    {
+      "id": "RonVodkaCola",
+      "name": "Ron & Vodka Cola",
+      "ingredients": "Ron, Vodka, Coca-Cola",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 },
+        { "disp": 2, "oz": 1 },
+        { "disp": 1, "oz": 2 }
+      ]
+    },
+    {
+      "id": "RonVodkaNaranja",
+      "name": "Vodka & Ron Cítrus",
+      "ingredients": "Ron, Vodka, Jugo de naranja",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 },
+        { "disp": 2, "oz": 1 },
+        { "disp": 5, "oz": 2 }
+      ]
+    },
+    {
+      "id": "RonVodkaTonic",
+      "name": "Ron & Vodka Tonic",
+      "ingredients": "Ron, Vodka, Agua tónica",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 },
+        { "disp": 2, "oz": 1 },
+        { "disp": 3, "oz": 2 }
+      ]
+    },
+    {
+      "id": "ShotVodka",
+      "name": "Shot de Vodka",
+      "ingredients": "Vodka",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 2, "oz": 1 }
+      ]
+    },
+    {
+      "id": "ShotRon",
+      "name": "Shot de Ron",
+      "ingredients": "Ron",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 }
+      ]
+    },
+    {
+      "id": "Shot5050",
+      "name": "Shot 50/50",
+      "ingredients": "Vodka, Ron",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 2, "oz": 1 },
+        { "disp": 4, "oz": 1 }
+      ]
+    },
+    {
+      "id": "ShotCitrico",
+      "name": "Shot Cítrico",
+      "ingredients": "Vodka, Jugo de naranja",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 2, "oz": 1 },
+        { "disp": 5, "oz": 1 }
+      ]
+    },
+    {
+      "id": "NaranjaTonic",
+      "name": "Naranja Tónica",
+      "ingredients": "Jugo de naranja, Agua tónica",
+      "category": "non-alcohol",
+      "steps": [
+        { "disp": 5, "oz": 1 },
+        { "disp": 3, "oz": 1 }
+      ]
+    },
+    {
+      "id": "CitricoCola",
+      "name": "Cítrico Cola",
+      "ingredients": "Jugo de naranja, Coca-Cola",
+      "category": "non-alcohol",
+      "steps": [
+        { "disp": 5, "oz": 1 },
+        { "disp": 1, "oz": 1 }
+      ]
+    },
+    {
+      "id": "VodkaSunriseFake",
+      "name": "Vodka Sunrise Fake",
+      "ingredients": "Vodka, Jugo de naranja, Coca-Cola",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 2, "oz": 1 },
+        { "disp": 5, "oz": 1 },
+        { "disp": 1, "oz": 1 }
+      ]
+    },
+    {
+      "id": "RonFresh",
+      "name": "Ron Fresh",
+      "ingredients": "Ron, Jugo de naranja, Agua tónica",
+      "category": "alcohol",
+      "steps": [
+        { "disp": 4, "oz": 1 },
+        { "disp": 5, "oz": 1 },
+        { "disp": 3, "oz": 1 }
+      ]
+    },
+    {
+      "id": "Cola",
+      "name": "Coca-Cola",
+      "ingredients": "Coca-Cola",
+      "category": "non-alcohol",
+      "steps": [
+        { "disp": 1, "oz": 3 }
+      ]
+    }
   ]
 }
-
