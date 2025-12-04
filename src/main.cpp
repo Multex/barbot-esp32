@@ -157,7 +157,4 @@ void loop() {
   }
 }
 
-void yieldAndHandle() {
-  server.handleClient();
-  delay(1);
-}
+void yieldAndHandle() { server.handleClient(); }
